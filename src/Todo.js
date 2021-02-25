@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { TodoContext } from './contexts/todo.context';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,13 +13,13 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 
 
-export default function Todo({ id, task, completed, deleteTodo, toggleTodo, editTodo }) {
+export default function Todo({ id, task, completed }) {
+    const { deleteTodo, toggleTodo } = useContext(TodoContext);
     const [isEditing, setIsEditing] = useToggle(); 
     return (
         <ListItem style={{height: '64px'}}>
             {isEditing ? (
                 <EditTodoForm 
-                    editTodo={editTodo} 
                     id={id} 
                     task={task} 
                     setIsEditing={setIsEditing}

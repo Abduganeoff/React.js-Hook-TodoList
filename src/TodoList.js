@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { TodoContext } from './contexts/todo.context';
 import Todo from './Todo';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
 
-export default function TodoList({ todos, deleteTodo, toggleTodo, editTodo}) {
+export default function TodoList() {
+    const { todos } = useContext(TodoContext);
     if(todos.length)
     return (
         <Paper>
@@ -13,11 +15,10 @@ export default function TodoList({ todos, deleteTodo, toggleTodo, editTodo}) {
                 {todos.map((todo, idx) => (
                     <>
                         <Todo
-                            {...todo}
                             key={todo.id}
-                            deleteTodo={deleteTodo}
-                            toggleTodo={toggleTodo}
-                            editTodo={editTodo}
+                            id={todo.id}
+                            task={todo.task}
+                            completed={todo.completed}
                         />
                         {idx < todos.length - 1 && <Divider />}
                     </>
