@@ -5,11 +5,11 @@ import TextField from '@material-ui/core/TextField';
 
 export default function EditTodoForm({ id, task, setIsEditing }) {
     const [value, handleChange, reset] = useInputForm(task);
-    const {editTodo} = useContext(TodoContext);
+    const {dispatch} = useContext(TodoContext);
     return(
         <form onSubmit={ e => {
             e.preventDefault();
-            editTodo(id, value);
+            dispatch({ type: "EDIT", id, task: value });
             reset();
             setIsEditing();
         }}
