@@ -12,9 +12,6 @@ import Grid from '@material-ui/core/Grid';
 
 export default function TodoApp() {
 
-
-
-
     return (
         <Paper
             style={{
